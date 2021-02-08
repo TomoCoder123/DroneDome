@@ -5,7 +5,6 @@
       "scale" : "1x"
     },
     {
-      "filename" : "Tree-256x256.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -17,8 +16,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "template"
   }
 }
