@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
       span: MKCoordinateSpan(latitudeDelta: 0.16405544070813249, longitudeDelta: 0.1232528799585566))
 
     mapView.cameraZoomRange = MKMapView.CameraZoomRange(
-      minCenterCoordinateDistance: 7000,
+      minCenterCoordinateDistance: 1500,
       maxCenterCoordinateDistance: 60000)
     mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: initialRegion)
 
@@ -46,8 +46,6 @@ class MapViewController: UIViewController {
     mapView.delegate = self
 
     mapView.addAnnotations(Game.shared.warps)
-    mapView.delegate = self
-    
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +62,6 @@ class MapViewController: UIViewController {
   }
 
   private func setupTileRenderer() {
-
     let overlay = AdventureMapOverlay()
 
     overlay.canReplaceMapContent = true
@@ -96,11 +93,14 @@ class MapViewController: UIViewController {
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
   // Add delegates here
- 
-  func mapView(
-    _ mapView: MKMapView, rendererFor overlay:  MKOverlay)->MKOverlayRenderer{
-    return tileRenderer
+  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+    if overlay is AdventureMapOverlay {
+      return tileRenderer
+    } else {
+      return shimmerRenderer
+    }
   }
+
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     switch annotation {
     case let user as MKUserLocation:

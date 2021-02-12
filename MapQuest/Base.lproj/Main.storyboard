@@ -43,13 +43,23 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-hb-yPc">
+                                <rect key="frame" x="0.0" y="389" width="414" height="347"/>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Ac-KO-g4i"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ZKV-2F-bmV" firstAttribute="trailing" secondItem="3Ac-KO-g4i" secondAttribute="trailing" id="4nZ-Js-tRs"/>
+                            <constraint firstItem="wP1-hb-yPc" firstAttribute="top" secondItem="ZKV-2F-bmV" secondAttribute="bottom" constant="8" symbolic="YES" id="GQA-hj-HEC"/>
+                            <constraint firstItem="wP1-hb-yPc" firstAttribute="leading" secondItem="3Ac-KO-g4i" secondAttribute="leading" id="Kba-bO-Q3t"/>
+                            <constraint firstItem="wP1-hb-yPc" firstAttribute="trailing" secondItem="3Ac-KO-g4i" secondAttribute="trailing" id="Kdp-4F-gYY"/>
+                            <constraint firstItem="wP1-hb-yPc" firstAttribute="bottom" secondItem="3Ac-KO-g4i" secondAttribute="bottom" id="MwE-Ly-Sbh"/>
                             <constraint firstItem="ZKV-2F-bmV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="deB-Pt-wUY"/>
+                            <constraint firstItem="wP1-hb-yPc" firstAttribute="leading" secondItem="3Ac-KO-g4i" secondAttribute="leading" id="fab-lP-7Jr"/>
+                            <constraint firstAttribute="bottom" secondItem="wP1-hb-yPc" secondAttribute="bottom" id="tss-L2-rKm"/>
                             <constraint firstItem="ZKV-2F-bmV" firstAttribute="leading" secondItem="3Ac-KO-g4i" secondAttribute="leading" id="uy7-EZ-kB9"/>
+                            <constraint firstItem="3Ac-KO-g4i" firstAttribute="trailing" secondItem="wP1-hb-yPc" secondAttribute="trailing" id="ws3-LH-Qxg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dw6-D5-Y75">
@@ -92,6 +102,7 @@
                     <connections>
                         <outlet property="WebView" destination="ZKV-2F-bmV" id="xOm-G1-twn"/>
                         <outlet property="heartsLabel" destination="O2o-Wf-7gb" id="nTn-2Y-03o"/>
+                        <outlet property="mapView" destination="wP1-hb-yPc" id="vuo-rC-iNR"/>
                         <segue destination="XUh-oG-XuB" kind="show" identifier="shop" id="eoB-y8-Yn2"/>
                     </connections>
                 </viewController>
