@@ -16,26 +16,26 @@ class WarpZone: NSObject, MKAnnotation {
   }
 }
 
-extension WarpZone {
-  var image: UIImage {
-    // swiftlint:disable:next discouraged_object_literal
-    return #imageLiteral(resourceName: "warp")
-  }
-}
-
-class WarpAnnotationView: MKAnnotationView {
-  static let identifier = "WarpZone"
-
-  override var annotation: MKAnnotation? {
-    get { super.annotation }
-    set {
-      super.annotation = newValue
-      guard let warp = newValue as? WarpZone else { return }
-
-      self.image = warp.image
-    }
-  }
-}
+//extension WarpZone {
+//  var image: UIImage {
+//    // swiftlint:disable:next discouraged_object_literal
+//    return #imageLiteral(resourceName: "warp")
+//  }
+//}
+//
+//class WarpAnnotationView: MKAnnotationView {
+//  static let identifier = "WarpZone"
+//
+//  override var annotation: MKAnnotation? {
+//    get { super.annotation }
+//    set {
+//      super.annotation = newValue
+//      guard let warp = newValue as? WarpZone else { return }
+//
+//      self.image = warp.image
+//    }
+//  }
+//}
 
 extension UIImage {
   func maskWithColor(color: UIColor) -> UIImage {

@@ -46,6 +46,8 @@ class MapViewController: UIViewController {
     mapView.delegate = self
 
     mapView.addAnnotations(Game.shared.warps)
+    mapView.delegate = self
+    
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +64,7 @@ class MapViewController: UIViewController {
   }
 
   private func setupTileRenderer() {
+
     let overlay = AdventureMapOverlay()
 
     overlay.canReplaceMapContent = true
@@ -93,14 +96,11 @@ class MapViewController: UIViewController {
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
   // Add delegates here
-  func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    if overlay is AdventureMapOverlay {
-      return tileRenderer
-    } else {
-      return shimmerRenderer
-    }
+ 
+  func mapView(
+    _ mapView: MKMapView, rendererFor overlay:  MKOverlay)->MKOverlayRenderer{
+    return tileRenderer
   }
-
   func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
     switch annotation {
     case let user as MKUserLocation:
@@ -112,14 +112,14 @@ extension MapViewController: MKMapViewDelegate {
         view.image = #imageLiteral(resourceName: "user")
         return view
       }
-    case let warp as WarpZone:
-      if let existingView = mapView.dequeueReusableAnnotationView(
-        withIdentifier: WarpAnnotationView.identifier) {
-        existingView.annotation = annotation
-        return existingView
-      } else {
-        return WarpAnnotationView(annotation: warp, reuseIdentifier: WarpAnnotationView.identifier)
-      }
+//    case let warp as WarpZone:
+//      if let existingView = mapView.dequeueReusableAnnotationView(
+//        withIdentifier: WarpAnnotationView.identifier) {
+//        existingView.annotation = annotation
+//        return existingView
+//      } else {
+//        return WarpAnnotationView(annotation: warp, reuseIdentifier: WarpAnnotationView.identifier)
+//      }
     default:
       return nil
     }

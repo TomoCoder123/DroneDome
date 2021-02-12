@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UYf-BO-aUz">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -13,7 +13,7 @@
             <objects>
                 <navigationController id="UYf-BO-aUz" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F5d-4S-a2M">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -29,16 +29,15 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="DroneDome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-hb-yPc">
-                                <rect key="frame" x="0.0" y="452" width="414" height="444"/>
-                            </mapView>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-2F-bmV">
-                                <rect key="frame" x="0.0" y="87" width="414" height="357"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-2F-bmV">
+                                <rect key="frame" x="0.0" y="44" width="414" height="337"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="337" id="rZn-Ei-x9s"/>
+                                </constraints>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
@@ -48,10 +47,9 @@
                         <viewLayoutGuide key="safeArea" id="3Ac-KO-g4i"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wP1-hb-yPc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WGP-gk-mcy"/>
-                            <constraint firstItem="wP1-hb-yPc" firstAttribute="leading" secondItem="3Ac-KO-g4i" secondAttribute="leading" id="fab-lP-7Jr"/>
-                            <constraint firstAttribute="bottom" secondItem="wP1-hb-yPc" secondAttribute="bottom" id="tss-L2-rKm"/>
-                            <constraint firstItem="3Ac-KO-g4i" firstAttribute="trailing" secondItem="wP1-hb-yPc" secondAttribute="trailing" id="ws3-LH-Qxg"/>
+                            <constraint firstItem="ZKV-2F-bmV" firstAttribute="trailing" secondItem="3Ac-KO-g4i" secondAttribute="trailing" id="4nZ-Js-tRs"/>
+                            <constraint firstItem="ZKV-2F-bmV" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="deB-Pt-wUY"/>
+                            <constraint firstItem="ZKV-2F-bmV" firstAttribute="leading" secondItem="3Ac-KO-g4i" secondAttribute="leading" id="uy7-EZ-kB9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Dw6-D5-Y75">
@@ -94,13 +92,12 @@
                     <connections>
                         <outlet property="WebView" destination="ZKV-2F-bmV" id="xOm-G1-twn"/>
                         <outlet property="heartsLabel" destination="O2o-Wf-7gb" id="nTn-2Y-03o"/>
-                        <outlet property="mapView" destination="wP1-hb-yPc" id="vuo-rC-iNR"/>
                         <segue destination="XUh-oG-XuB" kind="show" identifier="shop" id="eoB-y8-Yn2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.23188405797103" y="136.60714285714286"/>
+            <point key="canvasLocation" x="136.23188405797103" y="135.32608695652175"/>
         </scene>
         <!--Status-->
         <scene sceneID="fuq-sW-hnv">
@@ -117,7 +114,7 @@
             <objects>
                 <viewController title="Shop" id="XUh-oG-XuB" customClass="ShopViewController" customModule="DroneDome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lbG-70-a4y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfJ-2c-QA8">
