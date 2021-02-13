@@ -25,11 +25,11 @@ class MapViewController: UIViewController {
     let urls = URL(string: "http://192.168.56.1:6006/")!;
     WebView.load(URLRequest(url: urls))
     let initialRegion = MKCoordinateRegion(
-      center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
-      span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
+      center: CLLocationCoordinate2D(latitude: 0, longitude: -5),
+      span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3))
 
     mapView.cameraZoomRange = MKMapView.CameraZoomRange(
-      minCenterCoordinateDistance: 0,
+      minCenterCoordinateDistance: 10000000,
       maxCenterCoordinateDistance: 10000000000)
     mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: initialRegion)
 
@@ -54,8 +54,8 @@ class MapViewController: UIViewController {
     mapView.addOverlay(overlay, level: .aboveLabels)
     tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
 
-    overlay.minimumZ = 0
-    overlay.maximumZ = 16
+    overlay.minimumZ = 3
+    overlay.maximumZ = 4
   }
 
   @objc func gameUpdated(notification: Notification) {
