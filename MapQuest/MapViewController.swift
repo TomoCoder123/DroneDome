@@ -21,7 +21,6 @@ class MapViewController: UIViewController {
     super.viewDidLoad()
 
     setupTileRenderer()
-    setupLakeOverlay()
     WebView.scrollView.isScrollEnabled = false;
     let urls = URL(string: "http://192.168.56.1:6006/")!;
     WebView.load(URLRequest(url: urls))
@@ -40,24 +39,12 @@ class MapViewController: UIViewController {
     mapView.setUserTrackingMode(.followWithHeading, animated: true)
 
 
-    NotificationCenter.default
-      .addObserver(self, selector: #selector(gameUpdated(notification:)), name: gameStateNotification, object: nil)
-    mapView.delegate = self
 
-    mapView.addAnnotations(Game.shared.warps)
+    mapView.delegate = self
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    renderGame()
-  }
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "shop",
-      let shopController = segue.destination as? ShopViewController,
-      let store = sender as? Store {
-      shopController.shop = store
-    }
   }
 
   private func setupTileRenderer() {
@@ -71,21 +58,7 @@ class MapViewController: UIViewController {
     overlay.maximumZ = 16
   }
 
-  private func setupLakeOverlay() {
-    let lake = MKPolygon(coordinates: &Game.shared.reservoir, count: Game.shared.reservoir.count)
-    mapView.addOverlay(lake)
-
-    shimmerRenderer = ShimmerRenderer(overlay: lake)
-    shimmerRenderer.fillColor = #colorLiteral(red: 0.2431372549, green: 0.5803921569, blue: 0.9764705882, alpha: 1)
-    // swiftlint:disable:previous discouraged_object_literal
-    Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-      self?.shimmerRenderer.updateLocations()
-      self?.shimmerRenderer.setNeedsDisplay()
-    }
-  }
-
   @objc func gameUpdated(notification: Notification) {
-    renderGame()
   }
 }
 
@@ -126,19 +99,4 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 // MARK: - Game UI
-extension MapViewController {
-  private func heartsString() -> String {
-    // swiftlint:disable:next identifier_name
-    guard let hp = Game.shared.adventurer?.hitPoints else { return "☠️" }
-    return String(repeating: "❤️", count: hp / 2)
-  }
 
-  private func goldString() -> String {
-    guard let gold = Game.shared.adventurer?.gold else { return "" }
-    return "💰\(gold)"
-  }
-
-  private func renderGame() {
-    heartsLabel.text = heartsString() + "\n" + goldString()
-  }
-}
