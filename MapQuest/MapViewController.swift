@@ -23,7 +23,7 @@ class MapViewController: UIViewController {
     setupTileRenderer()
     setupLakeOverlay()
     WebView.scrollView.isScrollEnabled = false;
-    let urls = URL(string: "http://192.168.4.32:6006")!;
+    let urls = URL(string: "http://192.168.56.1:6006/")!;
     WebView.load(URLRequest(url: urls))
     let initialRegion = MKCoordinateRegion(
       center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
@@ -68,7 +68,7 @@ class MapViewController: UIViewController {
     mapView.addOverlay(overlay, level: .aboveLabels)
     tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
 
-    overlay.minimumZ = 13
+    overlay.minimumZ = 0
     overlay.maximumZ = 16
   }
 

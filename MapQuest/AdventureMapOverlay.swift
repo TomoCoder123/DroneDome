@@ -4,6 +4,7 @@ import MapKit
 
 class AdventureMapOverlay: MKTileOverlay {
   override func url(forTilePath path: MKTileOverlayPath) -> URL {
+    print("\(path.z) \(path.x) \(path.y)")
     let tilePath = Bundle.main.url(
       forResource: "\(path.y)",
       withExtension: "png",
