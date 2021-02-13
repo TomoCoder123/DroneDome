@@ -39,7 +39,6 @@ class MapViewController: UIViewController {
     mapView.showsCompass = true
     mapView.setUserTrackingMode(.followWithHeading, animated: true)
 
-    Game.shared.delegate = self
 
     NotificationCenter.default
       .addObserver(self, selector: #selector(gameUpdated(notification:)), name: gameStateNotification, object: nil)
@@ -141,69 +140,5 @@ extension MapViewController {
 
   private func renderGame() {
     heartsLabel.text = heartsString() + "\n" + goldString()
-  }
-}
-
-// MARK: - GameDelegate
-extension MapViewController: GameDelegate {
-  func encounteredMonster(monster: Monster) {
-    showFight(monster: monster)
-  }
-
-  func showFight(monster: Monster, subtitle: String = "Fight?") {
-    let alertController = UIAlertController()
-
-    let runAction = UIAlertAction(title: "Run", style: .cancel) { _ in
-      self.showFight(monster: monster, subtitle: "I think you should really fight this.")
-    }
-
-    let fightAction = UIAlertAction(title: "Fight", style: .default) { _ in
-      guard let result = Game.shared.fight(monster: monster) else { return }
-
-      switch result {
-      case .heroLost:
-        print("loss!")
-      case .heroWon:
-        print("win!")
-      case .tie:
-        self.showFight(monster: monster, subtitle: "A good row, but you are both still in the fight!")
-      }
-    }
-
-    alertController.title = "A wild \(monster.name) appeared!"
-    alertController.addActions(actions: [runAction, fightAction])
-    present(alertController, animated: true)
-  }
-
-  func encounteredNPC(npc: NPC) {
-    let alertController = UIAlertController()
-
-    let noThanksAction = UIAlertAction(title: "No Thanks", style: .cancel) { _ in
-      print("done with encounter")
-    }
-
-    let onMyWayAction = UIAlertAction(title: "On My Way", style: .default) { _ in
-      print("did not buy anything")
-    }
-
-    alertController.title = npc.name
-    alertController.addActions(actions: [noThanksAction, onMyWayAction])
-    present(alertController, animated: true)
-  }
-
-  func enteredStore(store: Store) {
-    let alertController = UIAlertController()
-
-    let backOutAction = UIAlertAction(title: "Back Out", style: .cancel) { _ in
-      print("did not buy anything")
-    }
-
-    let takeMoneyAction = UIAlertAction(title: "Take My 💰", style: .default) { _ in
-      self.performSegue(withIdentifier: "shop", sender: store)
-    }
-
-    alertController.title = store.name
-    alertController.addActions(actions: [backOutAction, takeMoneyAction])
-    present(alertController, animated: true)
   }
 }
