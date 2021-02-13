@@ -26,12 +26,12 @@ class MapViewController: UIViewController {
     let urls = URL(string: "http://192.168.4.32:6006")!;
     WebView.load(URLRequest(url: urls))
     let initialRegion = MKCoordinateRegion(
-      center: CLLocationCoordinate2D(latitude: 40.774669555422349, longitude: -73.964170794293238),
-      span: MKCoordinateSpan(latitudeDelta: 0.16405544070813249, longitudeDelta: 0.1232528799585566))
+      center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
+      span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1))
 
     mapView.cameraZoomRange = MKMapView.CameraZoomRange(
-      minCenterCoordinateDistance: 1500,
-      maxCenterCoordinateDistance: 60000)
+      minCenterCoordinateDistance: 0,
+      maxCenterCoordinateDistance: 10000000000)
     mapView.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: initialRegion)
 
     mapView.region = initialRegion
