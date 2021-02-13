@@ -14,20 +14,10 @@
 		0A16AD171E96EDC100347DCE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD161E96EDC100347DCE /* MapViewController.swift */; };
 		0A16AD441E9E57F700347DCE /* tiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A16AD431E9E57F700347DCE /* tiles */; };
 		0A16AD461E9E582500347DCE /* AdventureMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD451E9E582500347DCE /* AdventureMapOverlay.swift */; };
-		0A16AD481E9E5BA800347DCE /* Adventurer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD471E9E5BA800347DCE /* Adventurer.swift */; };
-		0A16AD4A1E9E5BCA00347DCE /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD491E9E5BCA00347DCE /* Monster.swift */; };
-		0A16AD4C1E9E5C6E00347DCE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD4B1E9E5C6E00347DCE /* Game.swift */; };
-		0A16AD4E1E9E5F4100347DCE /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD4D1E9E5F4100347DCE /* PointOfInterest.swift */; };
 		0A16AD501E9E600C00347DCE /* LocationListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD4F1E9E600C00347DCE /* LocationListener.swift */; };
-		0A4D700B1EA5166C0098C0A7 /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D700A1EA5166C0098C0A7 /* Encounter.swift */; };
-		0A4D700D1EA516960098C0A7 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D700C1EA516960098C0A7 /* Store.swift */; };
-		0A4D700F1EA516E20098C0A7 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D700E1EA516E20098C0A7 /* Item.swift */; };
-		0A4D70111EA517760098C0A7 /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D70101EA517760098C0A7 /* Weapon.swift */; };
 		0A4D70131EA51BE70098C0A7 /* HeroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D70121EA51BE70098C0A7 /* HeroViewController.swift */; };
-		0A76AC721EB223310091053A /* NPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A76AC711EB223310091053A /* NPC.swift */; };
 		0AF318A21EC129C200A6B7D6 /* ShimmerRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF318A11EC129C200A6B7D6 /* ShimmerRenderer.swift */; };
 		0AF3474D1EA5691B0019ED94 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3474C1EA5691B0019ED94 /* ShopViewController.swift */; };
-		0AF3474F1EA5A9EE0019ED94 /* PointOfInterest+MapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3474E1EA5A9EE0019ED94 /* PointOfInterest+MapKit.swift */; };
 		0AF347541EA6F8010019ED94 /* WarpZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF347531EA6F8010019ED94 /* WarpZone.swift */; };
 		3ECFF9D9242D017500749D6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFF9D8242D017500749D6E /* SceneDelegate.swift */; };
 		3EEC713A242FDEA600B302E3 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EEC7139242FDEA600B302E3 /* UIAlertController+Extension.swift */; };
@@ -43,20 +33,10 @@
 		0A16AD161E96EDC100347DCE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0A16AD431E9E57F700347DCE /* tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tiles; sourceTree = "<group>"; };
 		0A16AD451E9E582500347DCE /* AdventureMapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdventureMapOverlay.swift; sourceTree = "<group>"; };
-		0A16AD471E9E5BA800347DCE /* Adventurer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adventurer.swift; sourceTree = "<group>"; };
-		0A16AD491E9E5BCA00347DCE /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
-		0A16AD4B1E9E5C6E00347DCE /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		0A16AD4D1E9E5F4100347DCE /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
 		0A16AD4F1E9E600C00347DCE /* LocationListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationListener.swift; sourceTree = "<group>"; };
-		0A4D700A1EA5166C0098C0A7 /* Encounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encounter.swift; sourceTree = "<group>"; };
-		0A4D700C1EA516960098C0A7 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		0A4D700E1EA516E20098C0A7 /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
-		0A4D70101EA517760098C0A7 /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		0A4D70121EA51BE70098C0A7 /* HeroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroViewController.swift; sourceTree = "<group>"; };
-		0A76AC711EB223310091053A /* NPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NPC.swift; sourceTree = "<group>"; };
 		0AF318A11EC129C200A6B7D6 /* ShimmerRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerRenderer.swift; sourceTree = "<group>"; };
 		0AF3474C1EA5691B0019ED94 /* ShopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
-		0AF3474E1EA5A9EE0019ED94 /* PointOfInterest+MapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PointOfInterest+MapKit.swift"; sourceTree = "<group>"; };
 		0AF347501EA68D170019ED94 /* Game Test.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Game Test.gpx"; sourceTree = "<group>"; };
 		0AF347531EA6F8010019ED94 /* WarpZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarpZone.swift; sourceTree = "<group>"; };
 		3ECFF9D8242D017500749D6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				3EEC7138242FDE8B00B302E3 /* Extensions */,
-				0AF3474A1EA54A1C0019ED94 /* Game Code */,
 				0A16ACE81E96EDAD00347DCE /* AppDelegate.swift */,
 				3ECFF9D8242D017500749D6E /* SceneDelegate.swift */,
 				0A16AD4F1E9E600C00347DCE /* LocationListener.swift */,
@@ -116,22 +95,6 @@
 			path = MapQuest;
 			sourceTree = "<group>";
 		};
-		0AF3474A1EA54A1C0019ED94 /* Game Code */ = {
-			isa = PBXGroup;
-			children = (
-				0A16AD4B1E9E5C6E00347DCE /* Game.swift */,
-				0A16AD491E9E5BCA00347DCE /* Monster.swift */,
-				0A76AC711EB223310091053A /* NPC.swift */,
-				0A16AD471E9E5BA800347DCE /* Adventurer.swift */,
-				0A16AD4D1E9E5F4100347DCE /* PointOfInterest.swift */,
-				0A4D700A1EA5166C0098C0A7 /* Encounter.swift */,
-				0A4D700C1EA516960098C0A7 /* Store.swift */,
-				0A4D700E1EA516E20098C0A7 /* Item.swift */,
-				0A4D70101EA517760098C0A7 /* Weapon.swift */,
-			);
-			name = "Game Code";
-			sourceTree = "<group>";
-		};
 		0AF3474B1EA54A260019ED94 /* Test Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				3EEC7139242FDEA600B302E3 /* UIAlertController+Extension.swift */,
-				0AF3474E1EA5A9EE0019ED94 /* PointOfInterest+MapKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -251,17 +213,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A16AD501E9E600C00347DCE /* LocationListener.swift in Sources */,
-				0A4D700B1EA5166C0098C0A7 /* Encounter.swift in Sources */,
-				0A16AD4E1E9E5F4100347DCE /* PointOfInterest.swift in Sources */,
-				0A4D70111EA517760098C0A7 /* Weapon.swift in Sources */,
-				0A4D700D1EA516960098C0A7 /* Store.swift in Sources */,
-				0A76AC721EB223310091053A /* NPC.swift in Sources */,
-				0A16AD4A1E9E5BCA00347DCE /* Monster.swift in Sources */,
-				0A16AD4C1E9E5C6E00347DCE /* Game.swift in Sources */,
 				0AF347541EA6F8010019ED94 /* WarpZone.swift in Sources */,
 				0A16AD171E96EDC100347DCE /* MapViewController.swift in Sources */,
-				0A4D700F1EA516E20098C0A7 /* Item.swift in Sources */,
-				0AF3474F1EA5A9EE0019ED94 /* PointOfInterest+MapKit.swift in Sources */,
 				0A16ACE91E96EDAD00347DCE /* AppDelegate.swift in Sources */,
 				0A4D70131EA51BE70098C0A7 /* HeroViewController.swift in Sources */,
 				0AF318A21EC129C200A6B7D6 /* ShimmerRenderer.swift in Sources */,
@@ -269,7 +222,6 @@
 				3ECFF9D9242D017500749D6E /* SceneDelegate.swift in Sources */,
 				0A16AD461E9E582500347DCE /* AdventureMapOverlay.swift in Sources */,
 				0AF3474D1EA5691B0019ED94 /* ShopViewController.swift in Sources */,
-				0A16AD481E9E5BA800347DCE /* Adventurer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
