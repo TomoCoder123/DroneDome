@@ -45,10 +45,15 @@
                             </wkWebView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-hb-yPc">
                                 <rect key="frame" x="0.0" y="389" width="414" height="347"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9Rt-JC-aDQ" appends="YES" id="fXP-jF-ddC"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Ac-KO-g4i"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ZKV-2F-bmV" firstAttribute="trailing" secondItem="3Ac-KO-g4i" secondAttribute="trailing" id="4nZ-Js-tRs"/>
                             <constraint firstItem="wP1-hb-yPc" firstAttribute="top" secondItem="ZKV-2F-bmV" secondAttribute="bottom" constant="8" symbolic="YES" id="GQA-hj-HEC"/>
@@ -107,6 +112,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="9Rt-JC-aDQ">
+                    <connections>
+                        <action selector="addPin:" destination="BYZ-38-t0r" id="jMZ-h5-c64"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.23188405797103" y="135.32608695652175"/>
         </scene>

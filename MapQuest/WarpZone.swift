@@ -6,36 +6,36 @@ import UIKit
 class WarpZone: NSObject, MKAnnotation {
   // MARK: - Properties
   let coordinate: CLLocationCoordinate2D
-  let color: UIColor
+ 
 
   // MARK: - Initializers
-  init(latitude: CLLocationDegrees, longitude: CLLocationDegrees, color: UIColor) {
+  init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
     self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    self.color = color
+    
     super.init()
   }
 }
 
-//extension WarpZone {
-//  var image: UIImage {
-//    // swiftlint:disable:next discouraged_object_literal
-//    return #imageLiteral(resourceName: "warp")
-//  }
-//}
-//
-//class WarpAnnotationView: MKAnnotationView {
-//  static let identifier = "WarpZone"
-//
-//  override var annotation: MKAnnotation? {
-//    get { super.annotation }
-//    set {
-//      super.annotation = newValue
-//      guard let warp = newValue as? WarpZone else { return }
-//
-//      self.image = warp.image
-//    }
-//  }
-//}
+extension WarpZone {
+  var image: UIImage {
+    // swiftlint:disable:next discouraged_object_literal
+    return #imageLiteral(resourceName: "warp")
+  }
+}
+
+class WarpAnnotationView: MKAnnotationView {
+  static let identifier = "WarpZone"
+
+  override var annotation: MKAnnotation? {
+    get { super.annotation }
+    set {
+      super.annotation = newValue
+      guard let warp = newValue as? WarpZone else { return }
+
+      self.image = warp.image
+    }
+  }
+}
 
 extension UIImage {
   func maskWithColor(color: UIColor) -> UIImage {
@@ -63,3 +63,4 @@ extension UIImage {
     return coloredImage!
   }
 }
+
