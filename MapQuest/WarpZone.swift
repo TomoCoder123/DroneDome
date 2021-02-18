@@ -3,9 +3,9 @@
 import MapKit
 import UIKit
 
-class WarpZone: NSObject, MKAnnotation {
+@objc class WarpZone: NSObject, MKAnnotation {
   // MARK: - Properties
-  let coordinate: CLLocationCoordinate2D
+  @objc dynamic var coordinate: CLLocationCoordinate2D
  
 
   // MARK: - Initializers

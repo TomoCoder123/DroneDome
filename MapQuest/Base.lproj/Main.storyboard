@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,43 +73,22 @@
                             <view key="customView" contentMode="scaleToFill" id="XRj-BS-sbH">
                                 <rect key="frame" x="20" y="0.0" width="150" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2o-Wf-7gb">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
-                                        <string key="text">❤️❤️❤️❤️❤️
-💰1,000</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="O2o-Wf-7gb" firstAttribute="top" secondItem="XRj-BS-sbH" secondAttribute="top" id="4Eh-Kx-KCf"/>
-                                    <constraint firstAttribute="bottom" secondItem="O2o-Wf-7gb" secondAttribute="bottom" id="CeF-rL-hqQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="O2o-Wf-7gb" secondAttribute="trailing" id="xVw-x2-IQT"/>
-                                    <constraint firstItem="O2o-Wf-7gb" firstAttribute="leading" secondItem="XRj-BS-sbH" secondAttribute="leading" id="xjY-ol-RI6"/>
-                                </constraints>
                             </view>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="67J-oO-TcN">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="Kwo-8V-FRd">
                                 <rect key="frame" x="369" y="10" width="25" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="hyk-cw-y5E" kind="show" identifier="status" id="ty6-pz-eNQ"/>
-                                </connections>
                             </button>
                             <connections>
-                                <action selector="showStatus:" destination="BYZ-38-t0r" id="xFF-es-Kju"/>
+                                <segue destination="XUh-oG-XuB" kind="push" id="ZiI-n4-Ndi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="WebView" destination="ZKV-2F-bmV" id="xOm-G1-twn"/>
-                        <outlet property="heartsLabel" destination="O2o-Wf-7gb" id="nTn-2Y-03o"/>
                         <outlet property="mapView" destination="wP1-hb-yPc" id="vuo-rC-iNR"/>
-                        <segue destination="XUh-oG-XuB" kind="show" identifier="shop" id="eoB-y8-Yn2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -118,13 +98,20 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="136.23188405797103" y="135.32608695652175"/>
+            <point key="canvasLocation" x="136" y="161"/>
         </scene>
-        <!--Status-->
+        <!--Info-->
         <scene sceneID="fuq-sW-hnv">
             <objects>
-                <viewController id="hyk-cw-y5E" customClass="HeroViewController" customModule="DroneDome" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Status" id="Qhj-tb-3Dh"/>
+                <viewController modalTransitionStyle="crossDissolve" id="hyk-cw-y5E" customClass="HeroViewController" customModule="DroneDome" customModuleProvider="target" sceneMemberID="viewController">
+                    <label key="view" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap and hold to set the drone's destination. " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Iz-GT-0QS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <color key="highlightedColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                    </label>
+                    <navigationItem key="navigationItem" title="Info" id="Qhj-tb-3Dh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J0B-CI-COs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -169,4 +156,9 @@
             <point key="canvasLocation" x="137" y="916"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

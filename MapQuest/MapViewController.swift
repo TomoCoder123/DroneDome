@@ -8,9 +8,9 @@ class MapViewController: UIViewController {
   
   var previous: MKAnnotation?
   
-  
+  var speed: Double = 100000
 
-  
+  var warps: WarpZone =  WarpZone(latitude: 45.76518, longitude: -73.990)
 
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var heartsLabel: UILabel!
@@ -22,21 +22,44 @@ class MapViewController: UIViewController {
     }
     let location = sender.location(in: self.mapView) //Tells where the mapView is being clicked
     let locCoord = self.mapView.convert(location, toCoordinateFrom: self.mapView)
+    print(locCoord)
     let annotation = MKPointAnnotation()
     previous = annotation
     annotation.coordinate = locCoord
     annotation.title = "Drone Destination"
     annotation.subtitle = "Location of Destination"
-    
     self.mapView.addAnnotation(annotation)
     
+    //self.updatePos(annotation)
+   
+    
     
   }
-  func updatePos(latitude: Float, longitude: Float, annotation: MKPointAnnotation){
-    
+  func updatePos(_ annotation: MKPointAnnotation){
+  
+  let latitude = annotation.coordinate.latitude
+  let longitude = annotation.coordinate.longitude
+    let deltax = latitude - warps.coordinate.latitude
+    let deltay = longitude - warps.coordinate.longitude
+    print(latitude)
+    print(longitude)
+    print(warps.coordinate.latitude)
+    print(warps.coordinate.longitude)
+   
+//    self.mapView.removeAnnotation(warps[0])
+//      warps[0].coordinate.latitude = latitude
+//      warps[0].coordinate.longitude = longitude
+//      self.mapView.addAnnotation(warps[0])
+    UIView.animate(withDuration: 10){
+      self.warps.coordinate.latitude += deltax
+      self.warps.coordinate.longitude += deltay
+    }
+
+
+  
   }
   @IBOutlet weak var WebView: WKWebView!
-  var warps: [WarpZone] = []
+  
   
   // MARK: - Properties
   // swiftlint:disable implicitly_unwrapped_optional
@@ -47,8 +70,8 @@ class MapViewController: UIViewController {
   // MARK: - View Life Cycle
   private func setupWarps(){
 
-    warps = [WarpZone(latitude: 40.76518, longitude: -73.974)]
-
+    warps = WarpZone(latitude: 45.76518, longitude: -73.990)
+    
   }
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -73,7 +96,7 @@ class MapViewController: UIViewController {
     mapView.setUserTrackingMode(.followWithHeading, animated: true)
 
 
-    mapView.addAnnotations(warps)
+    mapView.addAnnotation(warps)
     mapView.delegate = self
   }
 
