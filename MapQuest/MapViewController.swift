@@ -56,32 +56,27 @@ class MapViewController: UIViewController {
     annotation.subtitle = "Location of Destination"
     self.mapView.addAnnotation(annotation)
     
-    //self.updatePos(annotation)
+    updatePos(longitude: annotation.coordinate.longitude, latitude: annotation.coordinate.latitude)
    
     
     
   }
   
-  func updatePos(_ annotation: MKPointAnnotation){
+  func updatePos(longitude: Double, latitude: Double){
   post()
-  let latitude = annotation.coordinate.latitude
-  let longitude = annotation.coordinate.longitude
-    let deltax = latitude - warps.coordinate.latitude
+   
+    let deltax = latitude - 10 - warps.coordinate.latitude
     let deltay = longitude - warps.coordinate.longitude
     print(latitude)
     print(longitude)
     print(warps.coordinate.latitude)
     print(warps.coordinate.longitude)
-   
-//    self.mapView.removeAnnotation(warps[0])
-//      warps[0].coordinate.latitude = latitude
-//      warps[0].coordinate.longitude = longitude
-//      self.mapView.addAnnotation(warps[0])
+
     UIView.animate(withDuration: 10){
       self.warps.coordinate.latitude += deltax
       self.warps.coordinate.longitude += deltay
     }
-
+    
 
   
   }
