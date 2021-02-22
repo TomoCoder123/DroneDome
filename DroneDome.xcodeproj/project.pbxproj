@@ -13,8 +13,8 @@
 		0A16ACF31E96EDAD00347DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A16ACF11E96EDAD00347DCE /* LaunchScreen.storyboard */; };
 		0A16AD171E96EDC100347DCE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD161E96EDC100347DCE /* MapViewController.swift */; };
 		0A16AD441E9E57F700347DCE /* tiles in Resources */ = {isa = PBXBuildFile; fileRef = 0A16AD431E9E57F700347DCE /* tiles */; };
-		0A16AD461E9E582500347DCE /* AdventureMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD451E9E582500347DCE /* AdventureMapOverlay.swift */; };
-		0AF347541EA6F8010019ED94 /* WarpZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF347531EA6F8010019ED94 /* WarpZone.swift */; };
+		0A16AD461E9E582500347DCE /* SatelliteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A16AD451E9E582500347DCE /* SatelliteView.swift */; };
+		0AF347541EA6F8010019ED94 /* DroneZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF347531EA6F8010019ED94 /* DroneZone.swift */; };
 		3ECFF9D9242D017500749D6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFF9D8242D017500749D6E /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,9 +27,9 @@
 		0A16ACF41E96EDAD00347DCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A16AD161E96EDC100347DCE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0A16AD431E9E57F700347DCE /* tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tiles; sourceTree = "<group>"; };
-		0A16AD451E9E582500347DCE /* AdventureMapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdventureMapOverlay.swift; sourceTree = "<group>"; };
+		0A16AD451E9E582500347DCE /* SatelliteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatelliteView.swift; sourceTree = "<group>"; };
 		0AF347501EA68D170019ED94 /* Game Test.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Game Test.gpx"; sourceTree = "<group>"; };
-		0AF347531EA6F8010019ED94 /* WarpZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WarpZone.swift; sourceTree = "<group>"; };
+		0AF347531EA6F8010019ED94 /* DroneZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DroneZone.swift; sourceTree = "<group>"; };
 		3ECFF9D8242D017500749D6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,8 +68,8 @@
 				0A16ACE81E96EDAD00347DCE /* AppDelegate.swift */,
 				3ECFF9D8242D017500749D6E /* SceneDelegate.swift */,
 				0A16AD161E96EDC100347DCE /* MapViewController.swift */,
-				0A16AD451E9E582500347DCE /* AdventureMapOverlay.swift */,
-				0AF347531EA6F8010019ED94 /* WarpZone.swift */,
+				0A16AD451E9E582500347DCE /* SatelliteView.swift */,
+				0AF347531EA6F8010019ED94 /* DroneZone.swift */,
 				0A16ACEC1E96EDAD00347DCE /* Main.storyboard */,
 				0AF3474B1EA54A260019ED94 /* Test Code */,
 				0A16ACEF1E96EDAD00347DCE /* Assets.xcassets */,
@@ -189,11 +189,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AF347541EA6F8010019ED94 /* WarpZone.swift in Sources */,
+				0AF347541EA6F8010019ED94 /* DroneZone.swift in Sources */,
 				0A16AD171E96EDC100347DCE /* MapViewController.swift in Sources */,
 				0A16ACE91E96EDAD00347DCE /* AppDelegate.swift in Sources */,
 				3ECFF9D9242D017500749D6E /* SceneDelegate.swift in Sources */,
-				0A16AD461E9E582500347DCE /* AdventureMapOverlay.swift in Sources */,
+				0A16AD461E9E582500347DCE /* SatelliteView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

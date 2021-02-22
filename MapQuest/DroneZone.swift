@@ -3,7 +3,7 @@
 import MapKit
 import UIKit
 
-@objc class WarpZone: NSObject, MKAnnotation {
+@objc class DroneZone: NSObject, MKAnnotation {
   // MARK: - Properties
   @objc dynamic var coordinate: CLLocationCoordinate2D
  
@@ -16,23 +16,23 @@ import UIKit
   }
 }
 
-extension WarpZone {
+extension DroneZone {
   var image: UIImage {
     // swiftlint:disable:next discouraged_object_literal
-    return #imageLiteral(resourceName: "warp")
+    return #imageLiteral(resourceName: "Drone")
   }
 }
 
-class WarpAnnotationView: MKAnnotationView {
-  static let identifier = "WarpZone"
+class DroneAnnotationView: MKAnnotationView {
+  static let identifier = "DroneZone"
 
   override var annotation: MKAnnotation? {
     get { super.annotation }
     set {
       super.annotation = newValue
-      guard let warp = newValue as? WarpZone else { return }
+      guard let Drone = newValue as? DroneZone else { return }
 
-      self.image = warp.image
+      self.image = Drone.image
     }
   }
 }

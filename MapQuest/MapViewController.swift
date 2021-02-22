@@ -100,7 +100,7 @@ public class MapViewController: UIViewController {
   
   var speed: Double = 100000
 
-  var warps: WarpZone =  WarpZone(latitude: 45.76518, longitude: -73.990)
+  var Drones: DroneZone =  DroneZone(latitude: 45.76518, longitude: -73.990)
   
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var heartsLabel: UILabel!
@@ -128,16 +128,16 @@ public class MapViewController: UIViewController {
   
   func updatePos(longitude: Double, latitude: Double){
    
-    let deltax = latitude - warps.coordinate.latitude
-    let deltay = longitude - warps.coordinate.longitude
+    let deltax = latitude - Drones.coordinate.latitude
+    let deltay = longitude - Drones.coordinate.longitude
 //    print(latitude)
 //    print(longitude)
-//    print(warps.coordinate.latitude)
-//    print(warps.coordinate.longitude)
+//    print(Drones.coordinate.latitude)
+//    print(Drones.coordinate.longitude)
 
     UIView.animate(withDuration: 1){
-      self.warps.coordinate.latitude += deltax
-      self.warps.coordinate.longitude += deltay
+      self.Drones.coordinate.latitude += deltax
+      self.Drones.coordinate.longitude += deltay
     }
     
 
@@ -152,14 +152,14 @@ public class MapViewController: UIViewController {
   // swiftlint:enable implicitly_unwrapped_optional
 
   // MARK: - View Life Cycle
-  private func setupWarps(){
+  private func setupDrones(){
 
-    warps = WarpZone(latitude: 45.76518, longitude: -73.990)
+    Drones = DroneZone(latitude: 45.76518, longitude: -73.990)
     
   }
   override public func viewDidLoad() {
     super.viewDidLoad()
-    setupWarps()
+    setupDrones()
     setupTileRenderer()
     WebView.scrollView.isScrollEnabled = false;
     let urls = URL(string: "http://192.168.4.27:5000/video_feed")!;
@@ -180,7 +180,7 @@ public class MapViewController: UIViewController {
     mapView.setUserTrackingMode(.followWithHeading, animated: true)
 
 
-    mapView.addAnnotation(warps)
+    mapView.addAnnotation(Drones)
     mapView.delegate = self
   }
 
@@ -232,13 +232,13 @@ extension MapViewController: MKMapViewDelegate {
         view.image = #imageLiteral(resourceName: "user")
         return view
       }
-    case let warp as WarpZone:
+    case let Drone as DroneZone:
       if let existingView = mapView.dequeueReusableAnnotationView(
-        withIdentifier: WarpAnnotationView.identifier) {
+        withIdentifier: DroneAnnotationView.identifier) {
         existingView.annotation = annotation
         return existingView
       } else {
-        return WarpAnnotationView(annotation: warp, reuseIdentifier: WarpAnnotationView.identifier)
+        return DroneAnnotationView(annotation: Drone, reuseIdentifier: DroneAnnotationView.identifier)
       }
     default:
       return nil
