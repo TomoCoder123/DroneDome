@@ -196,7 +196,7 @@ public class MapViewController: UIViewController {
 
   }
   private func setupTileRenderer() {
-    let overlay = AdventureMapOverlay()
+    let overlay = SatelliteView()
 
     overlay.canReplaceMapContent = true
     mapView.addOverlay(overlay, level: .aboveLabels)
