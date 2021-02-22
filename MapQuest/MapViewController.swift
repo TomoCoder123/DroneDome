@@ -149,7 +149,6 @@ public class MapViewController: UIViewController {
   // MARK: - Properties
   // swiftlint:disable implicitly_unwrapped_optional
   var tileRenderer: MKTileOverlayRenderer!
-  var shimmerRenderer: ShimmerRenderer!
   // swiftlint:enable implicitly_unwrapped_optional
 
   // MARK: - View Life Cycle
@@ -215,11 +214,8 @@ public class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
   // Add delegates here
   public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    if overlay is AdventureMapOverlay {
       return tileRenderer
-    } else {
-      return shimmerRenderer
-    }
+    
   }
 
   public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
