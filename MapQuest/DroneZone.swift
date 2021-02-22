@@ -10,7 +10,7 @@ import UIKit
 
   // MARK: - Initializers
   init(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-    self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude) //Initializes the coordinate of the drone.
     
     super.init()
   }
@@ -18,15 +18,16 @@ import UIKit
 
 extension DroneZone {
   var image: UIImage {
-    // swiftlint:disable:next discouraged_object_literal
-    return #imageLiteral(resourceName: "Drone")
+
+    return #imageLiteral(resourceName: "Drone") //Sets the drone image
   }
 }
 
 class DroneAnnotationView: MKAnnotationView {
+  //Represents the drone icon.
   static let identifier = "DroneZone"
 
-  override var annotation: MKAnnotation? {
+  override var annotation: MKAnnotation? { //Overrides the default annotation to set the icon as the Drone image.
     get { super.annotation }
     set {
       super.annotation = newValue
@@ -39,6 +40,7 @@ class DroneAnnotationView: MKAnnotationView {
 
 extension UIImage {
   func maskWithColor(color: UIColor) -> UIImage {
+    //Sets some settings for the drone image.
     UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
     // swiftlint:disable:next force_unwrapping
     let context = UIGraphicsGetCurrentContext()!
@@ -49,7 +51,7 @@ extension UIImage {
     context.scaleBy(x: 1.0, y: -1.0)
 
     let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
-    // swiftlint:disable:next force_unwrapping
+    
     context.draw(cgImage!, in: rect)
 
     context.setBlendMode(.sourceIn)
@@ -59,7 +61,7 @@ extension UIImage {
     let coloredImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
 
-    // swiftlint:disable:next force_unwrapping
+   
     return coloredImage!
   }
 }

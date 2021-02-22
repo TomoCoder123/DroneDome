@@ -4,18 +4,18 @@ import UIKit
 import MapKit
 import WebKit
 public class MapViewController: UIViewController {
-  // MARK: - IBOutlets
-//  let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateDrone(_:)), userInfo: nil, repeats: true)
+  //Manages what is shown on the map/
   
-  var globX: Double = -63.754138814196
+  var globX: Double = -63.754138814196 //Sets the coordinates of the drone. These are the starting x and y coordinates.
   var globY: Double = 13.9317203835678
 
   func post(xcord x: Double,ycord y: Double){
-    let url = URL(string: "http://192.168.4.27:5000/requester")
+    let url = URL(string: "http://192.168.4.27:5000/requester") //Sets the URL of the server connecting the drone to the app.
     guard let requestUrl = url else { fatalError() }
-    // Prepare URL Request Object
+    // Prepares URL Request Object
     var request = URLRequest(url: requestUrl)
     request.httpMethod = "POST"
+    //Post allows the app to send messsages to the server.
      
     // HTTP Request Parameters which will be sent in HTTP Request Body
     let postString = "xpos=\(x)&ypos=\(y)";
@@ -40,11 +40,8 @@ public class MapViewController: UIViewController {
   }
   
   @objc public func updateDrone() {
-    var arr = getPos()
-    arr[0] = self.globX
-    arr[1] = self.globY
-    print("\(arr) my reason...")
-    updatePos(longitude: arr[0], latitude: arr[1])
+    getPos()//Requests the position of the drone from the server
+    updatePos(longitude: self.globX, latitude: self.globY) //Updates the position of the drone on the map.
     repeatUpdateDrone()
   }
   
@@ -97,47 +94,45 @@ public class MapViewController: UIViewController {
     return position
   }
   var previous: MKAnnotation?
-  
-  var speed: Double = 100000
 
-  var Drones: DroneZone =  DroneZone(latitude: 45.76518, longitude: -73.990)
+  //Makes a DroneZone object and sets the initial position.
+  var drone: DroneZone =  DroneZone(latitude: 45.76518, longitude: -73.990)
   
   @IBOutlet weak var mapView: MKMapView!
   @IBOutlet weak var heartsLabel: UILabel!
   
 
   @IBAction func addPin(_ sender: UILongPressGestureRecognizer) {
-    if(!(previous == nil)){
+    //Adds a pin after a long press gesture. Also tells the drone to move to that position.
+    if(!(previous == nil)){ //If previous stores nothing, ignore. Otherwise remove the previous pin to create a new one.
       self.mapView.removeAnnotation(previous as! MKAnnotation)
     }
     let location = sender.location(in: self.mapView) //Tells where the mapView is being clicked
     let locCoord = self.mapView.convert(location, toCoordinateFrom: self.mapView)
-    print(locCoord)
-    let annotation = MKPointAnnotation()
+ 
+    let annotation = MKPointAnnotation() //Creates a pin object.
     previous = annotation
     annotation.coordinate = locCoord
     annotation.title = "Drone Destination"
     annotation.subtitle = "Location of Destination"
     self.mapView.addAnnotation(annotation)
     self.post(xcord: annotation.coordinate.longitude, ycord: annotation.coordinate.latitude)
-    //updatePos(longitude: annotation.coordinate.longitude, latitude: annotation.coordinate.latitude)
+    //Sends the coordinates of the annotation to the server.
+
    
     
     
   }
   
   func updatePos(longitude: Double, latitude: Double){
-   
-    let deltax = latitude - Drones.coordinate.latitude
-    let deltay = longitude - Drones.coordinate.longitude
-//    print(latitude)
-//    print(longitude)
-//    print(Drones.coordinate.latitude)
-//    print(Drones.coordinate.longitude)
-
+   //Updates the position of the drone by the second.
+    let deltax = latitude - drone.coordinate.latitude //Represents how much the latitude changed in one second.
+    let deltay = longitude - drone.coordinate.longitude
+      //Represents how much the longitude changed in one second.
     UIView.animate(withDuration: 1){
-      self.Drones.coordinate.latitude += deltax
-      self.Drones.coordinate.longitude += deltay
+      //updates the drone one the map.
+      self.drone.coordinate.latitude += deltax
+      self.drone.coordinate.longitude += deltay
     }
     
 
@@ -146,29 +141,31 @@ public class MapViewController: UIViewController {
   @IBOutlet weak var WebView: WKWebView!
   
   
-  // MARK: - Properties
-  // swiftlint:disable implicitly_unwrapped_optional
+
   var tileRenderer: MKTileOverlayRenderer!
-  // swiftlint:enable implicitly_unwrapped_optional
+  
 
-  // MARK: - View Life Cycle
-  private func setupDrones(){
 
-    Drones = DroneZone(latitude: 45.76518, longitude: -73.990)
-    
+  private func setupdrone(){
+
+    drone = DroneZone(latitude: 45.76518, longitude: -73.99)
+    //Creates the drone icon and initializes the locaiton.
   }
   override public func viewDidLoad() {
+    //Shows the initial view.
     super.viewDidLoad()
-    setupDrones()
+    setupdrone()
     setupTileRenderer()
     WebView.scrollView.isScrollEnabled = false;
     let urls = URL(string: "http://192.168.4.27:5000/video_feed")!;
     WebView.load(URLRequest(url: urls))
+    
     let initialRegion = MKCoordinateRegion(
       center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
       span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
+    //Sets the initial range of the view of the map.
     
-
+    //Sets the zoom range of the mpa.
     mapView.cameraZoomRange = MKMapView.CameraZoomRange(
       minCenterCoordinateDistance:6000000,
       maxCenterCoordinateDistance: 20000000)
@@ -180,29 +177,29 @@ public class MapViewController: UIViewController {
     mapView.setUserTrackingMode(.followWithHeading, animated: true)
 
 
-    mapView.addAnnotation(Drones)
+    mapView.addAnnotation(drone)
     mapView.delegate = self
   }
 
   override public func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    repeatUpdateDrone()
+    repeatUpdateDrone() //Starts the drone update loop.
   }
 
   func repeatUpdateDrone() {
     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
-      self?.updateDrone()
+      self?.updateDrone() //This is the drone update loop.
     })
 
   }
-  private func setupTileRenderer() {
+  private func setupTileRenderer() { //Sets up the satellite view tiles.
     let overlay = SatelliteView()
 
     overlay.canReplaceMapContent = true
     mapView.addOverlay(overlay, level: .aboveLabels)
     tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
 
-    overlay.minimumZ = 3
+    overlay.minimumZ = 3 //Sets the minimum zoom layer
     overlay.maximumZ = 5
   }
 
@@ -214,12 +211,12 @@ public class MapViewController: UIViewController {
 extension MapViewController: MKMapViewDelegate {
   // Add delegates here
   public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-      return tileRenderer
+      return tileRenderer //When the map wants to return a tile, it calls this function.
     
   }
 
   public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//    self.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+
     switch annotation {
     
     case let user as MKUserLocation:
@@ -228,10 +225,12 @@ extension MapViewController: MKMapViewDelegate {
         return existingView
       } else {
         let view = MKAnnotationView(annotation: user, reuseIdentifier: "user")
-        // swiftlint:disable:next discouraged_object_literal
+        
         view.image = #imageLiteral(resourceName: "user")
         return view
+        
       }
+      //Returns an annotation view as a drone annotation.
     case let Drone as DroneZone:
       if let existingView = mapView.dequeueReusableAnnotationView(
         withIdentifier: DroneAnnotationView.identifier) {
