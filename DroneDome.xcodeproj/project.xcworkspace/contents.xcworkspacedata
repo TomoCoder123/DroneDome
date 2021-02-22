@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/tomocoder/Downloads/MapQuest-3-2/final/DroneDome.xcodeproj">
+      location = "absolute:/Users/tomocoder/Downloads/MapQuest-3-2/final/DroneDome.xcodeproj">
    </FileRef>
 </Workspace>
