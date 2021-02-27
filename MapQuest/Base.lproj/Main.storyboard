@@ -33,6 +33,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-hb-yPc">
+                                <rect key="frame" x="0.0" y="381" width="414" height="355"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9Rt-JC-aDQ" appends="YES" id="fXP-jF-ddC"/>
+                                </connections>
+                            </mapView>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZKV-2F-bmV">
                                 <rect key="frame" x="0.0" y="44" width="414" height="337"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,20 +51,13 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="wP1-hb-yPc">
-                                <rect key="frame" x="0.0" y="389" width="414" height="347"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="9Rt-JC-aDQ" appends="YES" id="fXP-jF-ddC"/>
-                                </connections>
-                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Ac-KO-g4i"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ZKV-2F-bmV" firstAttribute="trailing" secondItem="3Ac-KO-g4i" secondAttribute="trailing" id="4nZ-Js-tRs"/>
-                            <constraint firstItem="wP1-hb-yPc" firstAttribute="top" secondItem="ZKV-2F-bmV" secondAttribute="bottom" constant="8" symbolic="YES" id="GQA-hj-HEC"/>
+                            <constraint firstItem="wP1-hb-yPc" firstAttribute="top" secondItem="ZKV-2F-bmV" secondAttribute="bottom" id="GQA-hj-HEC"/>
                             <constraint firstItem="wP1-hb-yPc" firstAttribute="leading" secondItem="3Ac-KO-g4i" secondAttribute="leading" id="Kba-bO-Q3t"/>
                             <constraint firstItem="wP1-hb-yPc" firstAttribute="trailing" secondItem="3Ac-KO-g4i" secondAttribute="trailing" id="Kdp-4F-gYY"/>
                             <constraint firstItem="wP1-hb-yPc" firstAttribute="bottom" secondItem="3Ac-KO-g4i" secondAttribute="bottom" id="MwE-Ly-Sbh"/>

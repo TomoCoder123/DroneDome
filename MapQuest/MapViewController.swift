@@ -5,7 +5,7 @@ import MapKit
 import WebKit
 
 
-
+var camCounter = 1
 class CustomButton: UIButton{ //Template for any buttons.
   
   
@@ -273,7 +273,11 @@ public class MapViewController: UIViewController {
     //Creates the drone icon and initializes the locaiton.
   }
   @objc func changeCamera(){
-    postCamera(camera: 2)
+    
+    let camNum = camCounter % 3
+    postCamera(camera: camNum)
+    camCounter = camCounter + 1
+    
   }
   override public func viewDidLoad() {
     //Shows the initial view.
