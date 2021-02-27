@@ -102,7 +102,7 @@ public class MapViewController: UIViewController {
   var globY: Double = 13.9317203835678
 
   func postCamera(camera: Int ){
-    let url = URL(string: "http://192.168.4.27:5000/requester") //Sets the URL of the server connecting the drone to the app.
+    let url = URL(string: "http://192.168.4.27:5000/camerarequest") //Sets the URL of the server connecting the drone to the app.
     guard let requestUrl = url else { fatalError() }
     // Prepares URL Request Object
     var request = URLRequest(url: requestUrl)
@@ -131,7 +131,7 @@ public class MapViewController: UIViewController {
     task.resume()
   }
   func post(xcord x: Double,ycord y: Double){
-    let url = URL(string: "http://192.168.4.27:5000/requester") //Sets the URL of the server connecting the drone to the app.
+    let url = URL(string: "http://192.168.4.27:5000/posrequest") //Sets the URL of the server connecting the drone to the app.
     guard let requestUrl = url else { fatalError() }
     // Prepares URL Request Object
     var request = URLRequest(url: requestUrl)
@@ -170,7 +170,7 @@ public class MapViewController: UIViewController {
     
     var position = [0.0,0.0]
     // Create URL
-    let url = URL(string: "http://192.168.4.27:5000")
+    let url = URL(string: "http://192.168.4.27:5000/posrequest")
     guard let requestUrl = url else { fatalError() }
     // Create URL Request
     var request = URLRequest(url: requestUrl)
@@ -273,7 +273,7 @@ public class MapViewController: UIViewController {
     //Creates the drone icon and initializes the locaiton.
   }
   @objc func changeCamera(){
-    
+    postCamera(camera: 2)
   }
   override public func viewDidLoad() {
     //Shows the initial view.
@@ -287,7 +287,7 @@ public class MapViewController: UIViewController {
     setupdrone()
     setupTileRenderer()
     WebView.scrollView.isScrollEnabled = false;
-    let urls = URL(string: "http://192.168.4.27:5000/video_feed")!;
+    let urls = URL(string: "http://192.168.4.27:5000/")!;
     WebView.load(URLRequest(url: urls))
     
     let initialRegion = MKCoordinateRegion(
