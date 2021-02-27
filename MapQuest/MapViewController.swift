@@ -5,7 +5,7 @@ import MapKit
 import WebKit
 
 
-var camCounter = 1
+
 class CustomButton: UIButton{ //Template for any buttons.
   
   
@@ -37,11 +37,11 @@ class CustomButton: UIButton{ //Template for any buttons.
   override func layoutSubviews(){
     super.layoutSubviews()
     
-    myIconView.frame = CGRect(x: 5, y:5,
-                              width: 100, height: frame.height).integral
+    myIconView.frame = CGRect(x: 0, y:0,
+                              width: 50, height: frame.height).integral
     myTitleLabel.frame = CGRect(x: 60, y:5,
-                                width: frame.width-65, height: (frame.height-10)/2).integral
-    myTitleLabel.frame = CGRect(x: 60, y: (frame.height + 10)/2, width: frame.width-65, height: (frame.height-10)/2).integral
+                                width: frame.width-65, height: (frame.height-10)/2+10).integral
+    mySubtitleLabel.frame = CGRect(x: 60, y: (frame.height + 10)/2, width: frame.width-65, height: (frame.height-10)/2).integral
   }
   private var viewModel: MyCustomButtonViewModel? //Private to make it mutable.
   init(with viewModel: MyCustomButtonViewModel){
@@ -89,12 +89,20 @@ struct MyCustomButtonViewModel{ //Holds data that we pass to the model of the bu
   
 }
 public class MapViewController: UIViewController {
-  
+  var camCounter = 1
+  var camMode = 1
   private let cameraButton: CustomButton = {
 
-    let camera = CustomButton(frame: CGRect(x:0, y: 0, width: 200, height: 60))
+    let camera = CustomButton(frame: CGRect(x:10, y: 400, width: 50, height: 30))
     camera.backgroundColor = .systemBlue
     return camera
+  }()
+  
+  private let modeButton: CustomButton = {
+
+    let mode = CustomButton(frame: CGRect(x: 10, y:450 , width: 50, height: 30))
+    mode.backgroundColor = .systemRed
+    return mode
   }()
   //Manages what is shown on the map/
   
@@ -110,7 +118,36 @@ public class MapViewController: UIViewController {
     //Post allows the app to send messsages to the server.
      
     // HTTP Request Parameters which will be sent in HTTP Request Body
-    let postString = "camera=\(2)";
+    let postString = "camera=\(camera)";
+    // Set HTTP Request Body
+    request.httpBody = postString.data(using: String.Encoding.utf8);
+    request.setValue("application/json", forHTTPHeaderField: "Accept")
+    // Perform HTTP Request
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check for Error
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+     
+            // Convert HTTP Response Data to a String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                print("Response data string:\n \(dataString)")
+            }
+    }
+    task.resume()
+  }
+  func postMode(mode: Int ){
+    let url = URL(string: "http://192.168.4.27:5000/camerarequest") //Sets the URL of the server connecting the drone to the app.
+    guard let requestUrl = url else { fatalError() }
+    // Prepares URL Request Object
+    var request = URLRequest(url: requestUrl)
+    request.httpMethod = "POST"
+    //Post allows the app to send messsages to the server.
+     
+    // HTTP Request Parameters which will be sent in HTTP Request Body
+    let postString = "mode=\(mode)";
     // Set HTTP Request Body
     request.httpBody = postString.data(using: String.Encoding.utf8);
     request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -201,7 +238,7 @@ public class MapViewController: UIViewController {
                   // Get value by key
               self.globX = convertedJsonIntoDict["x"] as! Double
               self.globY = convertedJsonIntoDict["y"] as! Double
-              print("\(self.globY) this is my 13th reason")
+             
                      
                  }
               } catch let error as NSError {
@@ -274,20 +311,36 @@ public class MapViewController: UIViewController {
   }
   @objc func changeCamera(){
     
-    let camNum = camCounter % 3
+    let camNum = camCounter % 5
     postCamera(camera: camNum)
     camCounter = camCounter + 1
+    
+  }
+  @objc func changeMode(){
+    
+    let modeNum = camMode % 3
+    postMode(mode: camMode)
+    camMode = camMode + 1
     
   }
   override public func viewDidLoad() {
     //Shows the initial view.
     super.viewDidLoad()
     view.addSubview(cameraButton)
-    cameraButton.center = view.center
-    let viewModel = MyCustomButtonViewModel(title: "Change Camera", subtitle:"Camera options", imageName: "camera")
+    
+    let viewModel = MyCustomButtonViewModel(title: "", subtitle:"", imageName: "camera")
 
     cameraButton.configure(with: viewModel)
     cameraButton.addTarget(self, action: #selector(self.changeCamera), for: .touchUpInside)
+    
+    super.viewDidLoad()
+    view.addSubview(modeButton)
+    
+    let viewModel2 = MyCustomButtonViewModel(title: "", subtitle:"", imageName: "shuffle" )
+
+    modeButton.configure(with: viewModel2)
+    modeButton.addTarget(self, action: #selector(self.changeMode), for: .touchUpInside)
+    
     setupdrone()
     setupTileRenderer()
     WebView.scrollView.isScrollEnabled = false;
