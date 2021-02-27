@@ -3,12 +3,133 @@
 import UIKit
 import MapKit
 import WebKit
+
+
+
+class CustomButton: UIButton{ //Template for any buttons.
+  
+  
+  private let myTitleLabel: UILabel = {
+    let label = UILabel()
+    label.numberOfLines = 1
+    label.textAlignment = .center
+    return label
+  }()
+  
+  private let mySubtitleLabel: UILabel = {
+    let label = UILabel()
+    label.numberOfLines = 1
+    label.textAlignment = .center
+    return label
+  }()
+  
+  private let myIconView: UIImageView = {
+    let imageView = UIImageView()
+    imageView.contentMode = .scaleAspectFit
+    imageView.tintColor = .white
+    
+    return imageView
+  }()
+  override init(frame: CGRect){
+    self.viewModel = nil
+    super.init(frame: frame)
+  }
+  override func layoutSubviews(){
+    super.layoutSubviews()
+    
+    myIconView.frame = CGRect(x: 5, y:5,
+                              width: 100, height: frame.height).integral
+    myTitleLabel.frame = CGRect(x: 60, y:5,
+                                width: frame.width-65, height: (frame.height-10)/2).integral
+    myTitleLabel.frame = CGRect(x: 60, y: (frame.height + 10)/2, width: frame.width-65, height: (frame.height-10)/2).integral
+  }
+  private var viewModel: MyCustomButtonViewModel? //Private to make it mutable.
+  init(with viewModel: MyCustomButtonViewModel){
+
+    
+    self.viewModel = viewModel
+    super.init(frame: .zero)
+    
+    addSubviews()
+
+    configure(with: viewModel)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  private func addSubviews(){
+    guard !myTitleLabel.isDescendant(of: self) else{
+      return
+    }
+    addSubview(myTitleLabel)
+    
+    addSubview(mySubtitleLabel)
+  
+    addSubview(myIconView)
+  }
+  
+  
+  public func configure(with viewModel: MyCustomButtonViewModel){ //Allows configuring the button after it loads.
+    layer.masksToBounds = true
+    layer.cornerRadius = 8
+    layer.borderColor = UIColor.secondarySystemBackground.cgColor
+    layer.borderWidth = 1.5
+    addSubviews()
+    myTitleLabel.text = viewModel.title
+    mySubtitleLabel.text = viewModel.subtitle
+    myIconView.image = UIImage(systemName: viewModel.imageName)
+  }
+}
+struct MyCustomButtonViewModel{ //Holds data that we pass to the model of the button
+  let title: String
+  let subtitle: String
+  let imageName: String
+  
+}
 public class MapViewController: UIViewController {
+  
+  private let cameraButton: CustomButton = {
+
+    let camera = CustomButton(frame: CGRect(x:0, y: 0, width: 200, height: 60))
+    camera.backgroundColor = .systemBlue
+    return camera
+  }()
   //Manages what is shown on the map/
   
   var globX: Double = -63.754138814196 //Sets the coordinates of the drone. These are the starting x and y coordinates.
   var globY: Double = 13.9317203835678
 
+  func postCamera(camera: Int ){
+    let url = URL(string: "http://192.168.4.27:5000/requester") //Sets the URL of the server connecting the drone to the app.
+    guard let requestUrl = url else { fatalError() }
+    // Prepares URL Request Object
+    var request = URLRequest(url: requestUrl)
+    request.httpMethod = "POST"
+    //Post allows the app to send messsages to the server.
+     
+    // HTTP Request Parameters which will be sent in HTTP Request Body
+    let postString = "camera=\(2)";
+    // Set HTTP Request Body
+    request.httpBody = postString.data(using: String.Encoding.utf8);
+    request.setValue("application/json", forHTTPHeaderField: "Accept")
+    // Perform HTTP Request
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check for Error
+            if let error = error {
+                print("Error took place \(error)")
+                return
+            }
+     
+            // Convert HTTP Response Data to a String
+            if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                print("Response data string:\n \(dataString)")
+            }
+    }
+    task.resume()
+  }
   func post(xcord x: Double,ycord y: Double){
     let url = URL(string: "http://192.168.4.27:5000/requester") //Sets the URL of the server connecting the drone to the app.
     guard let requestUrl = url else { fatalError() }
@@ -49,7 +170,7 @@ public class MapViewController: UIViewController {
     
     var position = [0.0,0.0]
     // Create URL
-    let url = URL(string: "http://192.168.4.27:5000/requester")
+    let url = URL(string: "http://192.168.4.27:5000")
     guard let requestUrl = url else { fatalError() }
     // Create URL Request
     var request = URLRequest(url: requestUrl)
@@ -151,9 +272,18 @@ public class MapViewController: UIViewController {
     drone = DroneZone(latitude: 45.76518, longitude: -73.99)
     //Creates the drone icon and initializes the locaiton.
   }
+  @objc func changeCamera(){
+    
+  }
   override public func viewDidLoad() {
     //Shows the initial view.
     super.viewDidLoad()
+    view.addSubview(cameraButton)
+    cameraButton.center = view.center
+    let viewModel = MyCustomButtonViewModel(title: "Change Camera", subtitle:"Camera options", imageName: "camera")
+
+    cameraButton.configure(with: viewModel)
+    cameraButton.addTarget(self, action: #selector(self.changeCamera), for: .touchUpInside)
     setupdrone()
     setupTileRenderer()
     WebView.scrollView.isScrollEnabled = false;
@@ -210,6 +340,7 @@ public class MapViewController: UIViewController {
 // MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
   // Add delegates here
+  
   public func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
       return tileRenderer //When the map wants to return a tile, it calls this function.
     

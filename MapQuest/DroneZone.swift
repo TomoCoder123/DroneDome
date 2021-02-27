@@ -19,7 +19,7 @@ import UIKit
 extension DroneZone {
   var image: UIImage {
 
-    return #imageLiteral(resourceName: "Drone") //Sets the drone image
+    return #imageLiteral(resourceName: "user") //Sets the drone image
   }
 }
 
