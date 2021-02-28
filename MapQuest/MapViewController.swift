@@ -37,8 +37,8 @@ class CustomButton: UIButton{ //Template for any buttons.
   override func layoutSubviews(){
     super.layoutSubviews()
     
-    myIconView.frame = CGRect(x: 0, y:0,
-                              width: 50, height: frame.height).integral
+    myIconView.frame = CGRect(x: 0, y:2,
+                              width: 50, height: frame.height-3).integral
     myTitleLabel.frame = CGRect(x: 60, y:5,
                                 width: frame.width-65, height: (frame.height-10)/2+10).integral
     mySubtitleLabel.frame = CGRect(x: 60, y: (frame.height + 10)/2, width: frame.width-65, height: (frame.height-10)/2).integral
@@ -93,15 +93,15 @@ public class MapViewController: UIViewController {
   var camMode = 1
   private let cameraButton: CustomButton = {
 
-    let camera = CustomButton(frame: CGRect(x:10, y: 400, width: 50, height: 30))
-    camera.backgroundColor = .systemBlue
+    let camera = CustomButton(frame: CGRect(x:10, y: 405, width: 50, height: 30))
+    camera.backgroundColor = UIColor( red: 0.1607, green: 0.572, blue: 0.839, alpha: 1.0)
     return camera
   }()
   
   private let modeButton: CustomButton = {
 
-    let mode = CustomButton(frame: CGRect(x: 10, y:450 , width: 50, height: 30))
-    mode.backgroundColor = .systemRed
+    let mode = CustomButton(frame: CGRect(x: 10, y:440 , width: 50, height: 30))
+    mode.backgroundColor = .systemPink
     return mode
   }()
   //Manages what is shown on the map/
