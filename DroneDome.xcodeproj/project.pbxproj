@@ -47,7 +47,7 @@
 		0A16ACDC1E96EDAD00347DCE = {
 			isa = PBXGroup;
 			children = (
-				0A16ACE71E96EDAD00347DCE /* MapQuest */,
+				0A16ACE71E96EDAD00347DCE /* AppCode */,
 				0A16ACE61E96EDAD00347DCE /* Products */,
 			);
 			indentWidth = 2;
@@ -62,7 +62,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0A16ACE71E96EDAD00347DCE /* MapQuest */ = {
+		0A16ACE71E96EDAD00347DCE /* AppCode */ = {
 			isa = PBXGroup;
 			children = (
 				0A16ACE81E96EDAD00347DCE /* AppDelegate.swift */,
@@ -77,7 +77,7 @@
 				0A16AD431E9E57F700347DCE /* tiles */,
 				0A16ACF41E96EDAD00347DCE /* Info.plist */,
 			);
-			path = MapQuest;
+			path = AppCode;
 			sourceTree = "<group>";
 		};
 		0AF3474B1EA54A260019ED94 /* Test Code */ = {
