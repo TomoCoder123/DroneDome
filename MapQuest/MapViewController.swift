@@ -200,6 +200,8 @@ public class MapViewController: UIViewController {
   @objc public func updateDrone() {
     getPos()//Requests the position of the drone from the server
     updatePos(longitude: self.globX, latitude: self.globY) //Updates the position of the drone on the map.
+//    WebView.stopLoading()
+//    WebView.load(URLRequest(url: URL(string: "http://192.168.4.27:5000/")!))
     repeatUpdateDrone()
   }
   
@@ -263,7 +265,7 @@ public class MapViewController: UIViewController {
   @IBAction func addPin(_ sender: UILongPressGestureRecognizer) {
     //Adds a pin after a long press gesture. Also tells the drone to move to that position.
     if(!(previous == nil)){ //If previous stores nothing, ignore. Otherwise remove the previous pin to create a new one.
-      self.mapView.removeAnnotation(previous as! MKAnnotation)
+      self.mapView.removeAnnotation(previous!)
     }
     let location = sender.location(in: self.mapView) //Tells where the mapView is being clicked
     let locCoord = self.mapView.convert(location, toCoordinateFrom: self.mapView)
@@ -319,7 +321,7 @@ public class MapViewController: UIViewController {
   @objc func changeMode(){
     
     let modeNum = camMode % 3
-    postMode(mode: camMode)
+    postMode(mode: modeNum)
     camMode = camMode + 1
     
   }
@@ -334,7 +336,7 @@ public class MapViewController: UIViewController {
     cameraButton.addTarget(self, action: #selector(self.changeCamera), for: .touchUpInside)
     
     super.viewDidLoad()
-    view.addSubview(modeButton)
+    //view.addSubview(modeButton)
     
     let viewModel2 = MyCustomButtonViewModel(title: "", subtitle:"", imageName: "shuffle" )
 
@@ -346,7 +348,6 @@ public class MapViewController: UIViewController {
     WebView.scrollView.isScrollEnabled = false;
     let urls = URL(string: "http://192.168.4.27:5000/")!;
     WebView.load(URLRequest(url: urls))
-    
     let initialRegion = MKCoordinateRegion(
       center: CLLocationCoordinate2D(latitude: 0, longitude: 0),
       span: MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100))
